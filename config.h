@@ -35,7 +35,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	//	{ "[]=",      tile },
-	//    { "[M]",      monocle },
+	//  { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -55,7 +55,7 @@ static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
 static const char *clisp[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
 static const char *opera[] = { "opera", NULL };
-static const char *emacs[] = { "emacs", "-geometry", "177x38+0+378", NULL };
+static const char *emacs[] = { "emacs", "-geometry", "177x39+0+379", NULL };
 static const char *xterm[] = { "xterm", "-geometry", "159x25+0+435", NULL };
 
 //static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
@@ -126,7 +126,7 @@ static Button buttons[] = {
 
 void self_restart(const Arg *arg) {
 	const char *p = "/usr/local/bin/dwm";
-	execv(p, (char *const[]) {p, NULL});
+	execv(p, (char * const []) {p, NULL});
 }
 
 /* static Bool focus_follows_mouse = False; */
