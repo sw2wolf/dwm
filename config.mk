@@ -4,15 +4,15 @@ VERSION = 6.1
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+PREFIX = ${HOME}
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
 # Xinerama, comment if you don't want it
-XINERAMALIBS  = -lXinerama
-XINERAMAFLAGS = -DXINERAMA
+#XINERAMALIBS  = -lXinerama
+#XINERAMAFLAGS = -DXINERAMA
 
 # includes and libs
 INCS = -I${X11INC}
@@ -30,3 +30,4 @@ LDFLAGS  = -s ${LIBS}
 
 # compiler and linker
 CC = cc
+#CC = clang

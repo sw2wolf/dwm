@@ -228,8 +228,8 @@ static void tag(const Arg *arg);
 //static void tagmon(const Arg *arg);
 static int textnw(const char *text, unsigned int len);
 //static void tile(Monitor *);
-static void togglebar(const Arg *arg);
-static void togglefloating(const Arg *arg);
+//static void togglebar(const Arg *arg);
+//static void togglefloating(const Arg *arg);
 //static void toggletag(const Arg *arg);
 //static void toggleview(const Arg *arg);
 static void unfocus(Client *c, Bool setfocus);
@@ -1258,9 +1258,9 @@ movemouse(const Arg *arg) {
 					ny = selmon->wy;
 				else if(abs((selmon->wy + selmon->wh) - (ny + HEIGHT(c))) < snap)
 					ny = selmon->wy + selmon->wh - HEIGHT(c);
-				if(!c->isfloating && selmon->lt[selmon->sellt]->arrange
-				&& (abs(nx - c->x) > snap || abs(ny - c->y) > snap))
-					togglefloating(NULL);
+				/* if(!c->isfloating && selmon->lt[selmon->sellt]->arrange */
+				/* && (abs(nx - c->x) > snap || abs(ny - c->y) > snap)) */
+				/* 	togglefloating(NULL); */
 			}
 			if(!selmon->lt[selmon->sellt]->arrange || c->isfloating)
 				resize(c, nx, ny, c->w, c->h, True);
@@ -1737,26 +1737,26 @@ textnw(const char *text, unsigned int len) {
 /* 		} */
 /* } */
 
-void
-togglebar(const Arg *arg) {
-	selmon->showbar = !selmon->showbar;
-	updatebarpos(selmon);
-	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
-	arrange(selmon);
-}
+/* void */
+/* togglebar(const Arg *arg) { */
+/* 	selmon->showbar = !selmon->showbar; */
+/* 	updatebarpos(selmon); */
+/* 	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh); */
+/* 	arrange(selmon); */
+/* } */
 
-void
-togglefloating(const Arg *arg) {
-	if(!selmon->sel)
-		return;
-	if(selmon->sel->isfullscreen) /* no support for fullscreen windows */
-		return;
-	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
-	if(selmon->sel->isfloating)
-		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
-		       selmon->sel->w, selmon->sel->h, False);
-	arrange(selmon);
-}
+/* void */
+/* togglefloating(const Arg *arg) { */
+/* 	if(!selmon->sel) */
+/* 		return; */
+/* 	if(selmon->sel->isfullscreen) /\* no support for fullscreen windows *\/ */
+/* 		return; */
+/* 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed; */
+/* 	if(selmon->sel->isfloating) */
+/* 		resize(selmon->sel, selmon->sel->x, selmon->sel->y, */
+/* 		       selmon->sel->w, selmon->sel->h, False); */
+/* 	arrange(selmon); */
+/* } */
 
 /* void */
 /* toggletag(const Arg *arg) { */
