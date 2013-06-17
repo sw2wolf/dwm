@@ -230,8 +230,8 @@ static int textnw(const char *text, unsigned int len);
 //static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
-static void toggletag(const Arg *arg);
-static void toggleview(const Arg *arg);
+//static void toggletag(const Arg *arg);
+//static void toggleview(const Arg *arg);
 static void unfocus(Client *c, Bool setfocus);
 static void unmanage(Client *c, Bool destroyed);
 static void unmapnotify(XEvent *e);
@@ -1758,30 +1758,30 @@ togglefloating(const Arg *arg) {
 	arrange(selmon);
 }
 
-void
-toggletag(const Arg *arg) {
-	unsigned int newtags;
+/* void */
+/* toggletag(const Arg *arg) { */
+/* 	unsigned int newtags; */
 
-	if(!selmon->sel)
-		return;
-	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
-	if(newtags) {
-		selmon->sel->tags = newtags;
-		focus(NULL);
-		arrange(selmon);
-	}
-}
+/* 	if(!selmon->sel) */
+/* 		return; */
+/* 	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK); */
+/* 	if(newtags) { */
+/* 		selmon->sel->tags = newtags; */
+/* 		focus(NULL); */
+/* 		arrange(selmon); */
+/* 	} */
+/* } */
 
-void
-toggleview(const Arg *arg) {
-	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
+/* void */
+/* toggleview(const Arg *arg) { */
+/* 	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK); */
 
-	if(newtagset) {
-		selmon->tagset[selmon->seltags] = newtagset;
-		focus(NULL);
-		arrange(selmon);
-	}
-}
+/* 	if(newtagset) { */
+/* 		selmon->tagset[selmon->seltags] = newtagset; */
+/* 		focus(NULL); */
+/* 		arrange(selmon); */
+/* 	} */
+/* } */
 
 void
 unfocus(Client *c, Bool setfocus) {
