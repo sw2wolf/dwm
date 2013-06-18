@@ -20,8 +20,8 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
 	/* class      instance    title     tags mask     isfloating   monitor */
-	//{ "Opera",    NULL,       NULL,     0,            True,        -1 },
-    //{ "Emacs",    NULL,       NULL,     0,            True,        -1 },
+	/* { "Opera",    NULL,       NULL,     0,            True,        -1 }, */
+    /* { "Emacs",    NULL,       NULL,     0,            True,        -1 }, */
 	{ "Wine",     NULL,       NULL,     1 << 1,       True,        -1 },
 };
 
@@ -34,18 +34,17 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	//	{ "[]=",      tile },
-	//  { "[M]",      monocle },
+	/* { "[]=",      tile }, */
+	/* { "[M]",      monocle }, */
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} },
-
-/* { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, 
-{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, */
+    { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} },
+/* { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, */
+/* { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, */
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
