@@ -2,7 +2,7 @@
 static void self_restart(const Arg *arg);
 
 /* appearance */
-static const char font[]            = "-wenquanyi-wenquanyi bitmap song-medium-r-normal--12-130-75-75-p-80-iso10646-1";
+static const char font[] = "-*-simsun-medium-r-normal-*-16-*-*-*-*-*-iso10646-1";
 
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
@@ -55,8 +55,8 @@ static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
 static const char *clisp[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
 static const char *opera[] = { "opera", NULL };
-static const char *emacs[] = { "emacs", "-geometry", "177x39+0+379", NULL };
-static const char *xterm[] = { "xterm", "-geometry", "159x25+0+435", NULL };
+static const char *emacs[] = { "emacs", "-geometry", "177x39+0+779", NULL };
+static const char *xterm[] = { "xterm", "-geometry", "159x28+0+410", NULL };
 
 //static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
 //static const char *eweiqi[] = { "wine", "c:/Program Files/eweiqi/LiveBaduk.exe", NULL};

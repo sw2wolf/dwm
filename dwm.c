@@ -197,12 +197,12 @@ static void unfocus(Client *c, Bool setfocus);
 static void unmanage(Client *c, Bool destroyed);
 static void unmapnotify(XEvent *e);
 static Bool updategeom(void);
-static void updatebarpos(Monitor *m);
-static void updatebars(void);
+//static void updatebarpos(Monitor *m);
+//static void updatebars(void);
 static void updateclientlist(void);
 static void updatenumlockmask(void);
 static void updatesizehints(Client *c);
-static void updatestatus(void);
+//static void updatestatus(void);
 static void updatewindowtype(Client *c);
 static void updatetitle(Client *c);
 static void updatewmhints(Client *c);
@@ -544,7 +544,7 @@ configurenotify(XEvent *e) {
 			if(dc.drawable != 0)
 				XFreePixmap(dpy, dc.drawable);
 			dc.drawable = XCreatePixmap(dpy, root, sw, bh, DefaultDepth(dpy, screen));
-			updatebars();
+			//updatebars();
 			for(m = mons; m; m = m->next)
 				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
 			focus(NULL);
@@ -1085,7 +1085,7 @@ maprequest(XEvent *e) {
 	if(wa.override_redirect)
 		return;
 	if(!wintoclient(ev->window))
-	  manage(ev->window, &wa);
+	   manage(ev->window, &wa);
 }
 
 void
@@ -1175,8 +1175,8 @@ propertynotify(XEvent *e) {
 	Window trans;
 	XPropertyEvent *ev = &e->xproperty;
 
-	if((ev->window == root) && (ev->atom == XA_WM_NAME))
-		updatestatus();
+	if((ev->window == root) && (ev->atom == XA_WM_NAME)) ;
+	/* 	updatestatus(); */
 	else if(ev->state == PropertyDelete)
 		return; /* ignore */
 	else if((c = wintoclient(ev->window))) {
@@ -1434,8 +1434,8 @@ setup(void) {
 	if(!dc.font.set)
 		XSetFont(dpy, dc.gc, dc.font.xfont->fid);
 	/* init bars */
-	updatebars();
-	updatestatus();
+	//updatebars();
+	//updatestatus();
 	/* EWMH support per view */
 	XChangeProperty(dpy, root, netatom[NetSupported], XA_ATOM, 32,
 			PropModeReplace, (unsigned char *) netatom, NetLast);
@@ -1555,37 +1555,37 @@ unmapnotify(XEvent *e) {
 	}
 }
 
-void
-updatebars(void) {
-	Monitor *m;
-	XSetWindowAttributes wa = {
-		.override_redirect = True,
-		.background_pixmap = ParentRelative,
-		.event_mask = ButtonPressMask|ExposureMask
-	};
-	for(m = mons; m; m = m->next) {
-		if (m->barwin)
-			continue;
-		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, DefaultDepth(dpy, screen),
-		                          CopyFromParent, DefaultVisual(dpy, screen),
-		                          CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa);
-		XDefineCursor(dpy, m->barwin, cursor[CurNormal]);
-		XMapRaised(dpy, m->barwin);
-	}
-}
+/* void */
+/* updatebars(void) { */
+/* 	Monitor *m; */
+/* 	XSetWindowAttributes wa = { */
+/* 		.override_redirect = True, */
+/* 		.background_pixmap = ParentRelative, */
+/* 		.event_mask = ButtonPressMask|ExposureMask */
+/* 	}; */
+/* 	for(m = mons; m; m = m->next) { */
+/* 		if (m->barwin) */
+/* 			continue; */
+/* 		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, DefaultDepth(dpy, screen), */
+/* 		                          CopyFromParent, DefaultVisual(dpy, screen), */
+/* 		                          CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa); */
+/* 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]); */
+/* 		XMapRaised(dpy, m->barwin); */
+/* 	} */
+/* } */
 
-void
-updatebarpos(Monitor *m) {
-	m->wy = m->my;
-	m->wh = m->mh;
-	if(m->showbar) {
-		m->wh -= bh;
-		m->by = m->topbar ? m->wy : m->wy + m->wh;
-		m->wy = m->topbar ? m->wy + bh : m->wy;
-	}
-	else
-		m->by = -bh;
-}
+/* void */
+/* updatebarpos(Monitor *m) { */
+/* 	m->wy = m->my; */
+/* 	m->wh = m->mh; */
+/* 	if(m->showbar) { */
+/* 		m->wh -= bh; */
+/* 		m->by = m->topbar ? m->wy : m->wy + m->wh; */
+/* 		m->wy = m->topbar ? m->wy + bh : m->wy; */
+/* 	} */
+/* 	else */
+/* 		m->by = -bh; */
+/* } */
 
 void
 updateclientlist() {
@@ -1612,7 +1612,7 @@ updategeom(void) {
 			dirty = True;
 			mons->mw = mons->ww = sw;
 			mons->mh = mons->wh = sh;
-			updatebarpos(mons);
+			//updatebarpos(mons);
 		}
 	}
 	if(dirty) {
@@ -1695,12 +1695,12 @@ updatetitle(Client *c) {
 		strcpy(c->name, broken);
 }
 
-void
-updatestatus(void) {
-	if(!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "dwm-"VERSION);
-	//drawbar(selmon);
-}
+/* void */
+/* updatestatus(void) { */
+/* 	if(!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) */
+/* 		strcpy(stext, "dwm-"VERSION); */
+/* 	//drawbar(selmon); */
+/* } */
 
 void
 updatewindowtype(Client *c) {
