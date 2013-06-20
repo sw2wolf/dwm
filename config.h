@@ -1,8 +1,5 @@
-/* See LICENSE file for copyright and license details. */
-static void self_restart(const Arg *arg);
-
 /* appearance */
-static const char font[] = "-*-simsun-medium-r-normal-*-16-*-*-*-*-*-iso10646-1";
+static const char font[] = "-*-simsun-medium-r-normal-*-12-*-*-*-*-*-iso10646-1";
 
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
@@ -55,8 +52,7 @@ static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
 static const char *clisp[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
 static const char *opera[] = { "opera", NULL };
-static const char *emacs[] = { "emacs", "-geometry", "177x39+0+779", NULL };
-static const char *xterm[] = { "xterm", "-geometry", "159x28+0+410", NULL };
+static const char *emacs[] = { "emacs", NULL }; //"-geometry", "176x39+0+379", NULL };
 
 //static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
 //static const char *eweiqi[] = { "wine", "c:/Program Files/eweiqi/LiveBaduk.exe", NULL};
@@ -65,7 +61,6 @@ static Key keys[] = {
 	/* modifier                key        function        argument */
 	{ MODKEY,                  XK_w,      spawn,          {.v = opera } },
 	{ MODKEY,                  XK_e,      spawn,          {.v = emacs } },
-    { MODKEY,                  XK_t,      spawn,          {.v = xterm} },
 
     { MODKEY,                  XK_p,      spawn,          {.v = dmenu } },
     { MODKEY,                  XK_c,      spawn,          {.v = sdcv } },
@@ -104,7 +99,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
-    { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },   // logout
 };
 
@@ -124,10 +118,10 @@ static Button buttons[] = {
 //	{ ClkTagBar,       MODKEY,         Button3,        toggletag,      {0} },
 };
 
-void self_restart(const Arg *arg) {
-	const char *p = "/usr/local/bin/dwm";
-	execv(p, (char * const []) {p, NULL});
-}
+/* void self_restart(const Arg *arg) { */
+/* 	const char *p = "/usr/local/bin/dwm"; */
+/* 	execv(p, (char * const []) {p, NULL}); */
+/* } */
 
 /* static Bool focus_follows_mouse = False; */
 
