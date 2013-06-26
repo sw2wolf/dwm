@@ -1,5 +1,6 @@
 /* appearance */
-static const char font[] = "-*-simsun-medium-r-normal-*-12-*-*-*-*-*-iso10646-1";
+//static const char font[] = "-*-simsun-medium-r-normal-*-12-*-*-*-*-*-iso10646-1";
+static const char font[] = "Sans:size=11";
 
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
@@ -118,23 +119,34 @@ static Button buttons[] = {
 //	{ ClkTagBar,       MODKEY,         Button3,        toggletag,      {0} },
 };
 
+static void runorraise(const Arg *arg);
+
+void
+runorraise(const Arg *arg) {
+	const char **app = arg->v;
+	Arg a = { .ui = ~0 };
+	Monitor *mon;
+	Client *c;
+	XClassHint hint = { NULL, NULL };
+	/* Tries to find the client */
+	for (mon = mons; mon; mon = mon->next) {
+		for (c = mon->clients; c; c = c->next) {
+			XGetClassHint(dpy, c->win, &hint);
+			if (hint.res_class && strcmp(app[2], hint.res_class) == 0) {
+				a.ui = c->tags;
+				view(&a);
+				focus(c);
+				return;
+			}
+		}
+	}
+	/* Client not found: spawn it */
+	spawn(arg);
+}
+
 /* void self_restart(const Arg *arg) { */
 /* 	const char *p = "/usr/local/bin/dwm"; */
 /* 	execv(p, (char * const []) {p, NULL}); */
-/* } */
-
-/* static Bool focus_follows_mouse = False; */
-
-/* void enternotify_ffm(XEvent *e) { */
-/* 	if (focus_follows_mouse) */
-/* 		enternotify(e); */
-/* } */
-
-/* void toggle_ffm(const Arg *arg) { */
-/* 	// Swap EnterNotify handler when first toggle is occured. */
-/* 	if (handler[EnterNotify] == enternotify) */
-/* 		handler[EnterNotify] = enternotify_ffm; */
-/* 	focus_follows_mouse = !focus_follows_mouse; */
 /* } */
 
 /* *******
