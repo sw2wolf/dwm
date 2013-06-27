@@ -1,4 +1,5 @@
-/* appearance */
+static void runorraise(const Arg *arg);
+
 //static const char font[] = "-*-simsun-medium-r-normal-*-12-*-*-*-*-*-iso10646-1";
 static const char font[] = "Sans:size=11";
 
@@ -52,20 +53,24 @@ static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
 static const char *clisp[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
-static const char *opera[] = { "opera", NULL };
-static const char *emacs[] = { "emacs", NULL }; //"-geometry", "176x39+0+379", NULL };
+static const char *opera[] = { "opera", NULL, "Opera"};
+static const char *emacs[] = { "emacs", NULL, "Emacs" };
 
-//static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
+static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
 //static const char *eweiqi[] = { "wine", "c:/Program Files/eweiqi/LiveBaduk.exe", NULL};
 
 static Key keys[] = {
-	/* modifier                key        function        argument */
-	{ MODKEY,                  XK_w,      spawn,          {.v = opera } },
-	{ MODKEY,                  XK_e,      spawn,          {.v = emacs } },
+	/* modifier     key        function        argument */
+	/* { MODKEY,    XK_w,      spawn,          {.v = opera } }, */
+	/* { MODKEY,    XK_e,      spawn,          {.v = emacs } }, */
+    { MODKEY,       XK_w,      runorraise,     {.v = opera } },
+	{ MODKEY,       XK_e,      runorraise,     {.v = emacs } },
 
-    { MODKEY,                  XK_p,      spawn,          {.v = dmenu } },
-    { MODKEY,                  XK_c,      spawn,          {.v = sdcv } },
-    { MODKEY,                  XK_x,      spawn,          {.v = clisp } },
+    { MODKEY,       XK_v,      runorraise,     {.v = winxp } },
+
+    { MODKEY,       XK_p,      spawn,          {.v = dmenu } },
+    { MODKEY,       XK_c,      spawn,          {.v = sdcv } },
+    { MODKEY,       XK_x,      spawn,          {.v = clisp } },
 
 	//{ MODKEY|ShiftMask,      XK_x,      spawn,          {.v = winxp } },
 	//{ MODKEY|ShiftMask,      XK_g,      spawn,          {.v = eweiqi } },
@@ -119,16 +124,14 @@ static Button buttons[] = {
 //	{ ClkTagBar,       MODKEY,         Button3,        toggletag,      {0} },
 };
 
-static void runorraise(const Arg *arg);
-
 void
 runorraise(const Arg *arg) {
-	const char **app = arg->v;
+	const char **app = (const char **)arg->v;
 	Arg a = { .ui = ~0 };
-	Monitor *mon;
 	Client *c;
+	Monitor *mon;
 	XClassHint hint = { NULL, NULL };
-	/* Tries to find the client */
+	
 	for (mon = mons; mon; mon = mon->next) {
 		for (c = mon->clients; c; c = c->next) {
 			XGetClassHint(dpy, c->win, &hint);
@@ -136,11 +139,12 @@ runorraise(const Arg *arg) {
 				a.ui = c->tags;
 				view(&a);
 				focus(c);
-				return;
+				XRaiseWindow(dpy, c->win);
+				return ;
 			}
 		}
 	}
-	/* Client not found: spawn it */
+
 	spawn(arg);
 }
 

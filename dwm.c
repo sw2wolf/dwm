@@ -150,10 +150,7 @@ static Monitor *createmon(void);
 static void destroynotify(XEvent *e);
 static void detach(Client *c);
 static void detachstack(Client *c);
-//static void drawbar(Monitor *m);
-//static void drawbars(void);
-//static void drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]);
-//static void drawtext(const char *text, unsigned long col[ColLast], Bool invert);
+
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
@@ -652,103 +649,6 @@ detachstack(Client *c) {
 		c->mon->sel = t;
 	}
 }
-
-/* void */
-/* drawbar(Monitor *m) { */
-/* 	int x; */
-/* 	unsigned int i, occ = 0, urg = 0; */
-/* 	unsigned long *col; */
-/* 	Client *c; */
-
-/* 	for(c = m->clients; c; c = c->next) { */
-/* 		occ |= c->tags; */
-/* 		if(c->isurgent) */
-/* 			urg |= c->tags; */
-/* 	} */
-/* 	dc.x = 0; */
-/* 	for(i = 0; i < LENGTH(tags); i++) { */
-/* 		dc.w = TEXTW(tags[i]); */
-/* 		col = m->tagset[m->seltags] & 1 << i ? dc.sel : dc.norm; */
-/* 		drawtext(tags[i], col, urg & 1 << i); */
-/* 		drawsquare(m == selmon && selmon->sel && selmon->sel->tags & 1 << i, */
-/* 		           occ & 1 << i, urg & 1 << i, col); */
-/* 		dc.x += dc.w; */
-/* 	} */
-/* 	dc.w = blw = TEXTW(m->ltsymbol); */
-/* 	drawtext(m->ltsymbol, dc.norm, False); */
-/* 	dc.x += dc.w; */
-/* 	x = dc.x; */
-/* 	if(m == selmon) { /\* status is only drawn on selected monitor *\/ */
-/* 		dc.w = TEXTW(stext); */
-/* 		dc.x = m->ww - dc.w; */
-/* 		if(dc.x < x) { */
-/* 			dc.x = x; */
-/* 			dc.w = m->ww - x; */
-/* 		} */
-/* 		drawtext(stext, dc.norm, False); */
-/* 	} */
-/* 	else */
-/* 		dc.x = m->ww; */
-/* 	if((dc.w = dc.x - x) > bh) { */
-/* 		dc.x = x; */
-/* 		if(m->sel) { */
-/* 			col = m == selmon ? dc.sel : dc.norm; */
-/* 			drawtext(m->sel->name, col, False); */
-/* 			drawsquare(m->sel->isfixed, m->sel->isfloating, False, col); */
-/* 		} */
-/* 		else */
-/* 			drawtext(NULL, dc.norm, False); */
-/* 	} */
-/* 	XCopyArea(dpy, dc.drawable, m->barwin, dc.gc, 0, 0, m->ww, bh, 0, 0); */
-/* 	XSync(dpy, False); */
-/* } */
-
-/* void */
-/* drawbars(void) { */
-/* 	Monitor *m; */
-
-/* 	for(m = mons; m; m = m->next) */
-/* 		drawbar(m); */
-/* } */
-
-/* void */
-/* drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]) { */
-/* 	int x; */
-
-/* 	XSetForeground(dpy, dc.gc, col[invert ? ColBG : ColFG]); */
-/* 	x = (dc.font.ascent + dc.font.descent + 2) / 4; */
-/* 	if(filled) */
-/* 		XFillRectangle(dpy, dc.drawable, dc.gc, dc.x+1, dc.y+1, x+1, x+1); */
-/* 	else if(empty) */
-/* 		XDrawRectangle(dpy, dc.drawable, dc.gc, dc.x+1, dc.y+1, x, x); */
-/* } */
-
-/* void */
-/* drawtext(const char *text, unsigned long col[ColLast], Bool invert) { */
-/* 	char buf[256]; */
-/* 	int i, x, y, h, len, olen; */
-
-/* 	XSetForeground(dpy, dc.gc, col[invert ? ColFG : ColBG]); */
-/* 	XFillRectangle(dpy, dc.drawable, dc.gc, dc.x, dc.y, dc.w, dc.h); */
-/* 	if(!text) */
-/* 		return; */
-/* 	olen = strlen(text); */
-/* 	h = dc.font.ascent + dc.font.descent; */
-/* 	y = dc.y + (dc.h / 2) - (h / 2) + dc.font.ascent; */
-/* 	x = dc.x + (h / 2); */
-/* 	/\* shorten text if necessary *\/ */
-/* 	for(len = MIN(olen, sizeof buf); len && textnw(text, len) > dc.w - h; len--); */
-/* 	if(!len) */
-/* 		return; */
-/* 	memcpy(buf, text, len); */
-/* 	if(len < olen) */
-/* 		for(i = len; i && i > len - 3; buf[--i] = '.'); */
-/* 	XSetForeground(dpy, dc.gc, col[invert ? ColBG : ColFG]); */
-/* 	if(dc.font.set) */
-/* 		XmbDrawString(dpy, dc.drawable, dc.font.set, dc.gc, x, y, buf, len); */
-/* 	else */
-/* 		XDrawString(dpy, dc.drawable, dc.gc, x, y, buf, len); */
-/* } */
 
 void
 enternotify(XEvent *e) {
