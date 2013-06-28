@@ -56,7 +56,7 @@ static const char *clisp[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 static const char *opera[] = { "opera", NULL, "Opera"};
 static const char *emacs[] = { "emacs", NULL, "Emacs" };
 
-static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
+//static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
 //static const char *eweiqi[] = { "wine", "c:/Program Files/eweiqi/LiveBaduk.exe", NULL};
 
 static Key keys[] = {
@@ -66,7 +66,7 @@ static Key keys[] = {
     { MODKEY,       XK_w,      runorraise,     {.v = opera } },
 	{ MODKEY,       XK_e,      runorraise,     {.v = emacs } },
 
-    { MODKEY,       XK_v,      runorraise,     {.v = winxp } },
+    /* { MODKEY,       XK_v,      runorraise,     {.v = winxp } }, */
 
     { MODKEY,       XK_p,      spawn,          {.v = dmenu } },
     { MODKEY,       XK_c,      spawn,          {.v = sdcv } },
