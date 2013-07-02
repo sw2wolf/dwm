@@ -215,7 +215,7 @@ static const char broken[] = "broken";
 static char stext[256];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
-static int bh, blw = 0;      /* bar geometry */
+static int bh = 0, blw = 0;      /* bar geometry */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
@@ -311,10 +311,10 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, Bool interact) {
 		if(*y + *h + 2 * c->bw <= m->wy)
 			*y = m->wy;
 	}
-	if(*h < bh)
-		*h = bh;
-	if(*w < bh)
-		*w = bh;
+	/* if(*h < bh) */
+	/* 	*h = bh; */
+	/* if(*w < bh) */
+	/* 	*w = bh; */
 	if(resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
 		/* see last two sentences in ICCCM 4.1.2.3 */
 		baseismin = c->basew == c->minw && c->baseh == c->minh;
@@ -448,7 +448,8 @@ cleanup(void) {
 	else
 		XFreeFont(dpy, dc.font.xfont);
 	XUngrabKey(dpy, AnyKey, AnyModifier, root);
-	XFreePixmap(dpy, dc.drawable);
+	if(dc.drawable != 0)
+		XFreePixmap(dpy, dc.drawable);
 	XFreeGC(dpy, dc.gc);
 	XFreeCursor(dpy, cursor[CurNormal]);
 	XFreeCursor(dpy, cursor[CurResize]);
@@ -540,10 +541,10 @@ configurenotify(XEvent *e) {
 		if(updategeom() || dirty) {
 			if(dc.drawable != 0)
 				XFreePixmap(dpy, dc.drawable);
-			dc.drawable = XCreatePixmap(dpy, root, sw, bh, DefaultDepth(dpy, screen));
+			//dc.drawable = XCreatePixmap(dpy, root, sw, bh, DefaultDepth(dpy, screen));
 			//updatebars();
-			for(m = mons; m; m = m->next)
-				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
+			/* for(m = mons; m; m = m->next) */
+			/* 	XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh); */
 			focus(NULL);
 			arrange(NULL);
 		}
@@ -1302,7 +1303,7 @@ setup(void) {
 	initfont(font);
 	sw = DisplayWidth(dpy, screen);
 	sh = DisplayHeight(dpy, screen);
-	bh = dc.h = dc.font.height + 2;
+	/* bh = */ dc.h = dc.font.height + 2;
 	updategeom();
 	/* init atoms */
 	wmatom[WMProtocols] = XInternAtom(dpy, "WM_PROTOCOLS", False);
@@ -1328,7 +1329,7 @@ setup(void) {
 	dc.sel[ColBorder] = getcolor(selbordercolor);
 	dc.sel[ColBG] = getcolor(selbgcolor);
 	dc.sel[ColFG] = getcolor(selfgcolor);
-	dc.drawable = XCreatePixmap(dpy, root, DisplayWidth(dpy, screen), bh, DefaultDepth(dpy, screen));
+	dc.drawable = 0;/* XCreatePixmap(dpy, root, DisplayWidth(dpy, screen), bh, DefaultDepth(dpy, screen)); */
 	dc.gc = XCreateGC(dpy, root, 0, NULL);
 	XSetLineAttributes(dpy, dc.gc, 1, LineSolid, CapButt, JoinMiter);
 	if(!dc.font.set)
