@@ -15,7 +15,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 //static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "1", "2", "3" };
 
 static const Rule rules[] = {
 	/* class      instance    title     tags mask     isfloating   monitor */
@@ -25,9 +25,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact      = 0.45; /* factor of master area size [0.05..0.95] */
-static const int nmaster      = 1;    /* number of clients in master area */
-static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
+//static const float mfact      = 0.45; /* factor of master area size [0.05..0.95] */
+//static const int nmaster      = 1;    /* number of clients in master area */
+//static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
 /* first entry is default */
 static const Layout layouts[] = {

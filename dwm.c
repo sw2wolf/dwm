@@ -102,8 +102,8 @@ typedef struct {
 
 struct Monitor {
 	char ltsymbol[16];
-	float mfact;
-	int nmaster;
+	//float mfact;
+	//int nmaster;
 	int num;
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
@@ -111,8 +111,8 @@ struct Monitor {
 	unsigned int seltags;
 	unsigned int sellt;
 	unsigned int tagset[2];
-	Bool showbar;
-	Bool topbar;
+	//Bool showbar;
+	//Bool topbar;
 	Client *clients;
 	Client *sel;
 	Client *stack;
@@ -315,7 +315,7 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, Bool interact) {
 	/* 	*h = bh; */
 	/* if(*w < bh) */
 	/* 	*w = bh; */
-	if(resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
+	if(/* resizehints ||  */c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
 		/* see last two sentences in ICCCM 4.1.2.3 */
 		baseismin = c->basew == c->minw && c->baseh == c->minh;
 		if(!baseismin) { /* temporarily remove base dimensions */
@@ -611,10 +611,10 @@ createmon(void) {
 	if(!(m = (Monitor *)calloc(1, sizeof(Monitor))))
 		die("fatal: could not malloc() %u bytes\n", sizeof(Monitor));
 	m->tagset[0] = m->tagset[1] = 1;
-	m->mfact = mfact;
-	m->nmaster = nmaster;
-	m->showbar = False; //showbar;
-	m->topbar = True; //topbar;
+	//m->mfact = mfact;
+	//m->nmaster = nmaster;
+	//m->showbar = False;
+	//m->topbar = True;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
 	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
