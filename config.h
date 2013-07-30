@@ -51,7 +51,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
-static const char *cl[] = { "/home/sw2wolf/bin/cl", NULL };
+static const char *cl[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
 static const char *opera[] = { "opera", NULL, "Opera"};
 static const char *emacs[] = { "emacs", NULL, "Emacs" };
