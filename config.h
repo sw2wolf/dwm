@@ -53,10 +53,10 @@ static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
 static const char *eval[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
-static const char *opera[] = { "opera", NULL, "Opera"};
-static const char *emacs[] = { "emacs", NULL, "Emacs" };
+static const char *opera[] = { "opera", NULL, NULL, NULL, "Opera"};
+static const char *emacs[] = { "emacs", NULL, NULL, NULL, "Emacs"};
+static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL, "VirtualBox"};
 
-//static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL };
 //static const char *eweiqi[] = { "wine", "c:/Program Files/eweiqi/LiveBaduk.exe", NULL};
 
 static Key keys[] = {
@@ -66,7 +66,7 @@ static Key keys[] = {
     { MODKEY,       XK_w,      runorraise,     {.v = opera } },
 	{ MODKEY,       XK_e,      runorraise,     {.v = emacs } },
 
-    /* { MODKEY,       XK_v,      runorraise,     {.v = winxp } }, */
+    { MODKEY,       XK_v,      runorraise,     {.v = winxp } },
 
     { MODKEY,       XK_p,      spawn,          {.v = dmenu } },
     { MODKEY,       XK_c,      spawn,          {.v = sdcv } },
@@ -135,7 +135,7 @@ runorraise(const Arg *arg) {
 	for (mon = mons; mon; mon = mon->next) {
 		for (c = mon->clients; c; c = c->next) {
 			XGetClassHint(dpy, c->win, &hint);
-			if (hint.res_class && strcmp(app[2], hint.res_class) == 0) {
+			if (hint.res_class && strcmp(app[4], hint.res_class) == 0) {
 				a.ui = c->tags;
 				view(&a);
 				focus(c);
