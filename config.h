@@ -51,7 +51,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
-static const char *eval[] = { "/home/sw2wolf/bin/hs", NULL };
+static const char *eval[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
 static const char *opera[] = { "opera", NULL, NULL, NULL, "Opera"};
 static const char *emacs[] = { "emacs", NULL, NULL, NULL, "Emacs"};
@@ -66,7 +66,7 @@ static Key keys[] = {
     { MODKEY,       XK_w,      runorraise,     {.v = opera } },
 	{ MODKEY,       XK_e,      runorraise,     {.v = emacs } },
 
-    { MODKEY,       XK_v,      runorraise,     {.v = winxp } },
+    { MODKEY,       XK_m,      runorraise,     {.v = winxp } },
 
     { MODKEY,       XK_p,      spawn,          {.v = dmenu } },
     { MODKEY,       XK_c,      spawn,          {.v = sdcv } },
