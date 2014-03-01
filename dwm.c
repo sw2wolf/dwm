@@ -652,29 +652,25 @@ detachstack(Client *c) {
 	}
 }
 
-/* void */
-/* enternotify(XEvent *e) { */
-/* 	return; */
-/* } */
-
 void
 enternotify(XEvent *e) {
-	Client *c;
-	Monitor *m;
-	XCrossingEvent *ev = &e->xcrossing;
+	/* Client *c; */
+	/* Monitor *m; */
+	/* XCrossingEvent *ev = &e->xcrossing; */
 
-	if((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root)
-		return;
-	c = wintoclient(ev->window);
-	m = c ? c->mon : wintomon(ev->window);
-	if(m != selmon) {
-		unfocus(selmon->sel, True);
-		selmon = m;
-	}
-	else if(!c || c == selmon->sel)
-		return;
-	focus(c);
-	restack(selmon);
+	/* if((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root) */
+	/* 	return; */
+	/* c = wintoclient(ev->window); */
+	/* m = c ? c->mon : wintomon(ev->window); */
+	/* if(m != selmon) { */
+	/* 	unfocus(selmon->sel, True); */
+	/* 	selmon = m; */
+	/* } */
+	/* else if(!c || c == selmon->sel) */
+	/* 	return; */
+	/* focus(c); */
+	/* restack(selmon); */
+	return;
 }
 
 void
