@@ -942,7 +942,10 @@ manage(Window w, XWindowAttributes *wa) {
 	}
 	/* geometry */
 	c->x = c->oldx = wa->x;
-	c->y = c->oldy = wa->y;
+    if(strcasestr(c->name,"midori") || strcasestr(c->name,"luakit"))
+		c->y = c->oldy = 360;
+	else
+		c->y = c->oldy = wa->y;
 	c->w = c->oldw = wa->width;
 	c->h = c->oldh = wa->height;
 	c->oldbw = wa->border_width;
