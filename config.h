@@ -55,9 +55,9 @@ static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
 static const char *eval[] = { "/home/sw2wolf/bin/ecl.sh", NULL };
 
-/* static const char *www[] = { "opera", NULL, NULL, NULL, "Opera"}; */
+static const char *www[] = { "opera", NULL, NULL, NULL, "Opera"};
 /* static const char *www[] = { "luakit", NULL, NULL, NULL, "luakit"}; */
-static const char *www[] = { "dwb", NULL, NULL, NULL, "Dwb"};
+/* static const char *www[] = { "dwb", NULL, NULL, NULL, "Dwb"}; */
 
 static const char *emacs[] = { "emacs", NULL, NULL, NULL, "Emacs"};
 static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL, "VirtualBox"};
