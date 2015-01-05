@@ -1,4 +1,6 @@
 static void runorraise(const Arg *arg);
+static void restart(const Arg * arg);
+static void togglefullscreen(const Arg *arg);
 
 //static const char font[] = "-*-simsun-medium-r-normal-*-12-*-*-*-*-*-iso10646-1";
 static const char font[] = "Sans:size=11";
@@ -99,6 +101,7 @@ static Key keys[] = {
 //	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
 //	{ MODKEY,                       XK_space,  setlayout,      {0} },
 //	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_space,  togglefullscreen, {0} },
 //	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 //	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 //	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -108,6 +111,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
+	{ MODKEY|ShiftMask,             XK_r,      restart,        {0} },   // restart
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },   // logout
 };
 
@@ -151,15 +155,24 @@ runorraise(const Arg *arg) {
 	spawn(arg);
 }
 
-/* void */
-/* restart(const Arg * arg) */
-/* { */
-/* 	if (arg->v) { */
-/* 		execvp(((char **) arg->v)[0], (char **) arg->v); */
-/* 	} else { */
-/* 		execlp("dwm", "dwm", NULL); */
-/* 	} */
-/* } */
+void
+togglefullscreen(const Arg *arg) {
+	Client *c = selmon->sel;
+
+	if(!c)
+		return;
+	setfullscreen(c, !c->isfullscreen);
+}
+
+void
+restart(const Arg * arg)
+{
+	if (arg->v) {
+		execvp(((char **) arg->v)[0], (char **) arg->v);
+	} else {
+		execlp("dwm", "dwm", NULL);
+	}
+}
 
 /* void */
 /* togglelayout(const Arg * arg) */
@@ -199,7 +212,7 @@ runorraise(const Arg *arg) {
 
 /* grid layout */
 // http://dwm.suckless.org/patches/gridmode
-// from 5.8.2 diff
+// from 5.8.2 diff+
 //#include "/etc/portage/savedconfig/x11-wm/dwm-5.8.2-gridmode.c"
 
 /* bottom stack layouts */
