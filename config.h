@@ -55,14 +55,14 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
-static const char *eval[] = { "/home/sw2wolf/bin/ecl.sh", NULL };
+static const char *eval[] = { "/home/sw2wolf/bin/ccl.sh", NULL };
 
-static const char *www[] = { "opera", NULL, NULL, NULL, "Opera"};
+static const char *www[] = { "firefox", NULL, NULL, NULL, "Firefox"};
 /* static const char *www[] = { "luakit", NULL, NULL, NULL, "luakit"}; */
-/* static const char *www[] = { "dwb", NULL, NULL, NULL, "Dwb"}; */
+static const char *term[] = { "xterm", NULL, NULL, NULL, "XTerm"};
 
 static const char *emacs[] = { "emacs", NULL, NULL, NULL, "Emacs"};
-static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL, "VirtualBox"};
+//static const char *winxp[] = { "VBoxManage", "startvm", "winxp", NULL, "VirtualBox"};
 
 //static const char *eweiqi[] = { "wine", "c:/Program Files/eweiqi/LiveBaduk.exe", NULL};
 
@@ -70,8 +70,7 @@ static Key keys[] = {
 	/* modifier     key        function        argument */
     { MODKEY,       XK_w,      runorraise,     {.v = www } },
 	{ MODKEY,       XK_e,      runorraise,     {.v = emacs } },
-
-    { MODKEY,       XK_m,      runorraise,     {.v = winxp } },
+    { MODKEY,       XK_t,      runorraise,     {.v = term } },
 
     { MODKEY,       XK_p,      spawn,          {.v = dmenu } },
     { MODKEY,       XK_c,      spawn,          {.v = sdcv } },
@@ -81,7 +80,7 @@ static Key keys[] = {
 	//{ MODKEY|ShiftMask,      XK_g,      spawn,          {.v = eweiqi } },
 //
 	{ MODKEY,      XK_F11,    spawn,          SHCMD("sudo /sbin/shutdown -r now") },
-	{ MODKEY,      XK_F12,    spawn,          SHCMD("sudo /sbin/shutdown -p now") },
+	{ MODKEY,      XK_F12,    spawn,          SHCMD("sudo /sbin/shutdown -ph now") },
 //
 //	{ MODKEY,      XK_b,      togglebar,      {0} },
 
