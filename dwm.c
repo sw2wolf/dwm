@@ -941,8 +941,22 @@ manage(Window w, XWindowAttributes *wa) {
 		applyrules(c);
 	}
 /* geometry */
-	c->x = c->oldx = wa->x;
-	c->y = c->oldy = wa->y;
+	c->w = c->oldw = wa->width;
+	c->h = c->oldh = wa->height;
+	c->oldbw = wa->border_width;
+
+	if(strcasestr(c->name,"firefox")) {
+		c->x = c->oldx = 0;
+		c->y = c->oldy = 250;
+	}
+	else if(strcasestr(c->name,"emacs")) {
+		c->x = c->oldx = 0;
+		c->y = c->oldy = 450;
+	}
+	else {
+		c->x = c->oldx = wa->x;
+		c->y = c->oldy = wa->y;
+	}
 	c->w = c->oldw = wa->width;
 	c->h = c->oldh = wa->height;
 	c->oldbw = wa->border_width;

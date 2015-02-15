@@ -55,7 +55,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenu[] = { "/home/sw2wolf/bin/dmenu.sh", NULL };
 static const char *sdcv[] =  { "/home/sw2wolf/bin/sdcv.sh", NULL };
-static const char *eval[] = { "/home/sw2wolf/bin/ccl.sh", NULL };
+static const char *eval[] = { "/home/sw2wolf/bin/clisp.sh", NULL };
 
 static const char *www[] = { "firefox", NULL, NULL, NULL, "Firefox"};
 /* static const char *www[] = { "luakit", NULL, NULL, NULL, "luakit"}; */
